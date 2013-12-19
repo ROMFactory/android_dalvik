@@ -39,6 +39,8 @@ else
 endif
 host_smp_flag := -DANDROID_SMP=1
 
+
+ifneq ($(call is-vendor-board-platform,QCOM),true)
 # Build the installed version (libdvm.so) first
 WITH_JIT := true
 include $(LOCAL_PATH)/ReconfigureDvm.mk
@@ -59,6 +61,7 @@ endif
 LOCAL_ASFLAGS := $(LOCAL_CFLAGS)
 
 include $(BUILD_SHARED_LIBRARY)
+endif
 
 # Derivation #1
 # Enable assertions and JIT tuning
